@@ -1,0 +1,3 @@
+rootProject.name = 'Dansk'
+
+include ':app'
