@@ -13,6 +13,8 @@ import {
 import Dashboard from "./client/views/dashboard.js";
 import LocationSelector from "./client/views/selectLocation.js";
 import ProductList from "./client/views/productList.js";
+import CFODashboard from './client/views/cfoDashboard.js'
+import IncomeStatement from './client/views/incomeStatement';
 
 //Importing react-navigation framework
 import { StackNavigator } from "react-navigation";
@@ -47,6 +49,32 @@ const AppNavigator = StackNavigator({
     screen: ProductList,
     navigationOptions: {
       title: "Products List",
+      headerStyle: {
+        backgroundColor: "#a3104d"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  },
+  CFODashboard: {
+    screen: CFODashboard,
+    navigationOptions: {
+      title: "CFO Dashboard",
+      headerStyle: {
+        backgroundColor: "#a3104d"
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold"
+      }
+    }
+  },
+  IncomeStatement: {
+    screen: IncomeStatement,
+    navigationOptions: {
+      title: "CFO Dashboard",
       headerStyle: {
         backgroundColor: "#a3104d"
       },

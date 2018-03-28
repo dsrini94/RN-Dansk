@@ -34,7 +34,7 @@ export default class Dashboard extends Component<Props> {
 
             <View style={{marginTop:'25%',flexDirection:'row',justifyContent:'space-between',paddingTop:20,paddingLeft:20,paddingRight:20,paddingBottom:5}}>
               <TouchableWithoutFeedback style={{height:130}} onPress={()=>this.props.navigation.navigate('locationSelector')}><Image source={require('./../../images/d.png')} /></TouchableWithoutFeedback>
-              <Image source={require('./../../images/clip.png')}/>
+              <TouchableWithoutFeedback style={{height:130}} onPress={()=>this.props.navigation.navigate('CFODashboard')}><Image source={require('./../../images/clip.png')}/></TouchableWithoutFeedback>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',padding:20}}>
               <Text style={{color:'#ffffff',fontSize:20}}>Dynamic Pricing</Text>
