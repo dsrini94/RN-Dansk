@@ -74,7 +74,7 @@ const AppNavigator = StackNavigator({
   IncomeStatement: {
     screen: IncomeStatement,
     navigationOptions: {
-      title: "CFO Dashboard",
+      title: "Income Statement",
       headerStyle: {
         backgroundColor: "#a3104d"
       },

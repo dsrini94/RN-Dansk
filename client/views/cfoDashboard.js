@@ -2,6 +2,8 @@ import React from 'react';
 
 import {View,Text,ImageBackground,TouchableOpacity,Image,ScrollView} from 'react-native';
 
+import { Pie } from 'react-native-pathjs-charts'
+
 export default class CFODashboard extends React.Component
 {
   constructor()
@@ -12,54 +14,127 @@ export default class CFODashboard extends React.Component
         kpi:'Net profit Margin',
         value:3,
         margin:'3%',
-        arrow:true
+        arrow:true,
+        name:'profit'
       },
       {
         kpi:'Account payable turnover',
         value:1,
         margin:'4%',
-        arrow:false
+        arrow:false,
+        name:'payable'
       },
       {
         kpi:'Account receivable turnover',
         value:5,
         margin:'1%',
-        arrow:true
+        arrow:true,
+        name:'receivable'
       },
       {
         kpi:'Current Ratio',
         value:4,
         margin:'2%',
-        arrow:false
+        arrow:false,
+        name:'Ratio'
       },
       {
         kpi:'Working Captial',
         value:3.5,
         margin:'5%',
-        arrow:true
+        arrow:true,
+        name:'Captial'
       },
       {
         kpi:'Budget Variance',
         value:2.3,
         margin:'3%',
-        arrow:false
+        arrow:false,
+        name:'Variance'
       },
       {
         kpi:'Net Promoter Score',
         value:3,
         margin:'1%',
-        arrow:true
+        arrow:true,
+        name:'Score'
       }]
     }
   }
 
   render()
   {
+
+    let data = [{
+      "name": "Acheived",
+      "population": 800000
+    },
+     {
+      "name": "Yet to",
+      "population": 200000
+    }
+  ]
+
+    let options = {
+      margin: {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      },
+      width: 150,
+      height: 150,
+      color: '#2980B9',
+      r: 50,
+      R: 150,
+      legendPosition: 'topLeft',
+      animate: {
+        enabled: true,
+        type: 'oneByOne',
+        duration: 100,
+        fillTransition: 3
+      },
+      label: {
+        fontFamily: 'Arial',
+        fontSize: 8,
+        fontWeight: true,
+        color: '#ECF0F1'
+      }
+    }
+
+
     return(
         <ImageBackground source={require('./../../images/d1.jpeg')} style={{flex:1}}>
-          <View style={{backgroundColor:'rgba(163, 16, 77,0.5)'}}>
-            <Text style={{fontWeight:'bold',fontSize:27,padding:20,color:'white'}}>Annual Revenue</Text>
+          <View style={{backgroundColor:'rgba(163, 16, 77,0.5)',flexDirection:'row',justifyContent:'space-around',paddingBottom:15}}>
+            <View style={{flex:3,justifyContent:'center'}}>
+              <Text style={{fontWeight:'bold',fontSize:27,padding:20,color:'white'}}>Annual Revenue</Text>
+            </View>
+            <View style={{flex:2,justifyContent:'flex-end'}}>
+                <Pie data={data}
+                  options={options}
+                  accessorKey="population"
+                  margin={{ top: -10, left: -20, right: 50, bottom: 0 }}
+                  color="#2980B9"
+                  pallete={
+                    [
+                      { 'r': 24, 'g': 175, 'b': 35 },
+                      { 'r': 25, 'g': 99, 'b': 201 },
+
+                    ]
+                  }
+                  r={20}
+                  R={55}
+                  legendPosition="topLeft"
+                  label={{
+                    fontFamily: 'Arial',
+                    fontSize: 15,
+                    fontWeight: true,
+                    color: '#ECF0F1'
+                  }}
+                  />
+              </View>
           </View>
+
 
           <View style={{flexDirection:'row',backgroundColor:'rgba(255, 255, 255,0.4)'}}>
             <View style={{flex:3}}>
@@ -81,7 +156,8 @@ export default class CFODashboard extends React.Component
                     <View style={{flex:1,flexDirection:'column',alignItems:'center',justifyContent:'center'}} key={key}>
                     <View style={{flex:1,flexDirection:'row',padding:20}} >
                       <View style={{flex:3,justifyContent:'center'}}>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('IncomeStatement')}><Text style={{fontSize:18,color:'black',textAlign:'center'}}>{item.kpi}</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('IncomeStatement',{graph:item.name})}>
+                        <Text style={{fontSize:18,color:'black',textAlign:'center'}}>{item.kpi}</Text></TouchableOpacity>
                       </View>
                       <View style={{flex:2,justifyContent:'center'}}>
                         <Text style={{fontSize:18,color:'black',textAlign:'center'}}>{item.value}</Text>
