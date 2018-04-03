@@ -17,12 +17,122 @@ export default class IncomeStatement extends React.Component
     this.state={
       region:'All',
       segment:'All',
-      product:'All',
+      products:'All',
       modalVisible:false,
       country:'select a location',
       product:'select a product',
-      category:'select a category'
+      category:'select a category',
+      data:[
+        [{
+          "v": 49,
+          "name": "2016 NP"
+        }, {
+          "v": 42,
+          "name": "2017 NP"
+        },{
+          "v": 79,
+          "name": "2018 NP"
+        }],
+        [{
+          "v": 69,
+          "name": "2016 NI"
+        }, {
+          "v": 62,
+          "name": "2017 NI"
+        },{
+          "v": 59,
+          "name": "2018 NI"
+        }],
+        [{
+          "v": 45,
+          "name": "2016 M"
+        }, {
+          "v": 55,
+          "name": "2017 M"
+        },{
+          "v": 43,
+          "name": "2018 M"
+        }]
+      ]
     }
+  }
+
+  handleFilter(){
+    if(this.state.product == 'Apple')
+    {
+      var data = [
+        [{
+          "v": 55,
+          "name": "2016 NP"
+        }, {
+          "v": 48,
+          "name": "2017 NP"
+        },{
+          "v": 60,
+          "name": "2018 NP"
+        }],
+        [{
+          "v": 70,
+          "name": "2016 NI"
+        }, {
+          "v": 88,
+          "name": "2017 NI"
+        },{
+          "v": 61,
+          "name": "2018 NI"
+        }],
+        [{
+          "v": 30,
+          "name": "2016 M"
+        }, {
+          "v": 40,
+          "name": "2017 M"
+        },{
+          "v": 50,
+          "name": "2018 M"
+        }]
+      ]
+      this.setState({data:data,modalVisible:!this.state.modalVisible,products:'Apple'});
+    }
+    else if (this.state.product == 'Banana') {
+
+      var data = [
+        [{
+          "v": 20,
+          "name": "2016 NP"
+        }, {
+          "v": 30,
+          "name": "2017 NP"
+        },{
+          "v": 40,
+          "name": "2018 NP"
+        }],
+        [{
+          "v": 40,
+          "name": "2016 NI"
+        }, {
+          "v": 50,
+          "name": "2017 NI"
+        },{
+          "v": 60,
+          "name": "2018 NI"
+        }],
+        [{
+          "v": 15,
+          "name": "2016 M"
+        }, {
+          "v": 25,
+          "name": "2017 M"
+        },{
+          "v": 35,
+          "name": "2018 M"
+        }]
+      ]
+      this.setState({data:data,modalVisible:!this.state.modalVisible,products:'Banana'});
+
+    }
+
+
   }
 
   render()
@@ -53,23 +163,23 @@ export default class IncomeStatement extends React.Component
     let data = [
       [{
         "v": 49,
-        "name": "Net Profit"
+        "name": "2016 NP"
       }, {
         "v": 42,
-        "name": "Net Profit"
+        "name": "2017 NP"
       },{
         "v": 79,
-        "name": "Net Profit"
+        "name": "2018 NP"
       }],
       [{
         "v": 69,
-        "name": "Net Income"
+        "name": "2016 NI"
       }, {
         "v": 62,
-        "name": "Net Income"
+        "name": "2017 NI"
       },{
         "v": 59,
-        "name": "Net Income"
+        "name": "2018 NI"
       }],
     ]
 
@@ -99,13 +209,13 @@ export default class IncomeStatement extends React.Component
     let data2 = [
       [{
         "v": 19,
-        "name": "Paid"
+        "name": "Received"
       }, {
         "v": 90,
-        "name": "Paid"
+        "name": "Received"
       },{
         "v": 40,
-        "name": "Paid"
+        "name": "Received"
       }],
       [{
         "v": 99,
@@ -272,16 +382,38 @@ export default class IncomeStatement extends React.Component
             <View style={{flex:3}}>
               <Text style={{fontSize:20,paddingTop:15,paddingLeft:25,paddingBottom:15,fontWeight:'bold'}}>Region {this.state.region}</Text>
               <Text style={{fontSize:20,paddingTop:15,paddingLeft:25,paddingBottom:15,fontWeight:'bold'}}>Segment {this.state.segment}</Text>
-              <Text style={{fontSize:20,paddingTop:15,paddingLeft:25,paddingBottom:15,fontWeight:'bold'}}>Product {this.state.product}</Text>
+              <Text style={{fontSize:20,paddingTop:15,paddingLeft:25,paddingBottom:15,fontWeight:'bold'}}>Product {this.state.products}</Text>
             </View>
             <View style={{justifyContent:'center',flex:1}}>
-              <TouchableOpacity onPress={()=>{this.setState({modalVisible:!this.state.modalVisible})}}><Image style={{justifyContent:'flex-end'}} source={require('./../../images/f2.png')} /></TouchableOpacity>
+              <TouchableOpacity onPress={()=>{this.setState({modalVisible:!this.state.modalVisible})}}><Image style={{justifyContent:'flex-end'}} source={require('./../../images/settings.png')} /></TouchableOpacity>
             </View>
           </View>
 
           <View style={{backgroundColor:'rgba(255, 255, 255,0.4)',marginTop:20,alignItems:'center',padding:20}}>
-            <Bar data={data} options={options} accessorKey='v'/>
+            <Bar data={this.state.data} options={options} accessorKey='v'/>
           </View>
+
+          <View style={{backgroundColor:'rgba(255, 255, 255,0.4)',marginTop:20,marginBottom:20,padding:20,flexDirection:'row',justifyContent:'space-between'}}>
+
+            <View>
+              <View style={{height:15,width:15,backgroundColor:'#44a9ce'}}>
+              </View>
+              <Text style={{color:'black',fontSize:15}}>NP - Net Profit</Text>
+            </View>
+
+            <View>
+              <View style={{height:15,width:15,backgroundColor:'#1b86ad'}}>
+              </View>
+              <Text style={{color:'black',fontSize:15}}>NI - Net Income</Text>
+            </View>
+
+            <View>
+              <View style={{height:15,width:15,backgroundColor:'#0d6687'}}>
+              </View>
+              <Text style={{color:'black',fontSize:15}}>M - Margin</Text>
+              </View>
+            </View>
+
           </ScrollView>
 
           <Modal
@@ -380,7 +512,7 @@ export default class IncomeStatement extends React.Component
               <TouchableOpacity style={{flex:1}} onPress={()=>{this.setState({modalVisible:!this.state.modalVisible})}}>
                 <Text style={{backgroundColor:'#2567d1',borderWidth:1,color:'white',padding:15,fontSize:18,textAlign:'center'}}>Close</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{flex:1}} >
+              <TouchableOpacity style={{flex:1}} onPress={this.handleFilter.bind(this)}>
                 <Text style={{backgroundColor:'white',borderWidth:1,padding:15,fontSize:18,textAlign:'center',color:'#2567d1'}}>Apply</Text>
               </TouchableOpacity>
             </View>

@@ -18,14 +18,14 @@ export default class CFODashboard extends React.Component
         name:'profit'
       },
       {
-        kpi:'Account payable turnover',
+        kpi:'Accounts payable turnover',
         value:1,
         margin:'4%',
         arrow:false,
         name:'payable'
       },
       {
-        kpi:'Account receivable turnover',
+        kpi:'Accounts receivable turnover',
         value:5,
         margin:'1%',
         arrow:true,
@@ -66,12 +66,12 @@ export default class CFODashboard extends React.Component
   {
 
     let data = [{
-      "name": "Acheived",
-      "population": 800000
+      "name": "750K",
+      "population": 750000
     },
      {
-      "name": "Yet to",
-      "population": 200000
+      "name": "250K",
+      "population": 250000
     }
   ]
 
@@ -118,7 +118,7 @@ export default class CFODashboard extends React.Component
                   pallete={
                     [
                       { 'r': 24, 'g': 175, 'b': 35 },
-                      { 'r': 25, 'g': 99, 'b': 201 },
+                      { 'r': 229, 'g': 61, 'b': 61 },
 
                     ]
                   }
@@ -144,7 +144,7 @@ export default class CFODashboard extends React.Component
               <Text style={{fontSize:20,color:'#a3104d',padding:10,textAlign:'center',fontWeight:'bold'}}>Value</Text>
             </View>
             <View style={{flex:2}}>
-              <Text style={{fontSize:20,color:'#a3104d',padding:10,textAlign:'center',fontWeight:'bold'}}>%</Text>
+              <Text style={{fontSize:20,color:'#a3104d',padding:10,textAlign:'center',fontWeight:'bold'}}>% Change</Text>
             </View>
           </View>
 
